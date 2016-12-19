@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # get 'timelines/index'
+  #--********************* 下記を追加 *********************
+  root to: 'timelines#index'
+  # 下記でも可
+  # root 'timelines#index'
+  #--******************************************************
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -6,3 +6,55 @@
   text-align: right;
 }
 /* ******************************************** */
+/* ***************** 下記を追加 ************** */
+.timeline_wrapper {
+  &.wrapper {
+    width: 700px;
+  }
+  .actions {
+    /* ***************** 下記を追加 ************** */
+    .alert {
+      float: left;
+    }
+    /* ******************************************** */
+    div.post {
+      float: right;
+    }
+  }
+  /* ***************** 下記を追加 ************** */
+  .timeline {
+    .per {
+      border-radius: 5px;
+      padding: 10px;
+      margin-top: 20px;
+
+      background-color: #DADADA;
+      &.mine {
+        background-color: #C1EFFF;
+      }
+
+      p {
+        margin: 0;
+      }
+      .icon {
+        display: inline-block;
+        width: 70px;
+        vertical-align: top;
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      .message {
+        display: inline-block;
+        margin-left: 10px;
+        width: 500px;
+        vertical-align: top;
+        word-wrap: break-word;
+      }
+    }
+  }
+/* ******************************************** */
+
+}
+/* ******************************************** */

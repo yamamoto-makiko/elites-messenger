@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   #--******************************************************
 
   devise_for :users
+  #--********************** 下記を追加 *******************
+  resources :timelines
+  #--*****************************************************
   
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"

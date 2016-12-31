@@ -1,28 +1,18 @@
-// Place all the styles related to the timelines controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-/* ***************** 下記を追加 ************** */
 .logout_wrapper {
   text-align: right;
 }
-/* ******************************************** */
-/* ***************** 下記を追加 ************** */
 .timeline_wrapper {
   &.wrapper {
     width: 700px;
   }
   .actions {
-    /* ***************** 下記を追加 ************** */
     .alert {
       float: left;
     }
-    /* ******************************************** */
-    // div.post {
      .post {
       float: right;
     }
   }
-  /* ***************** 下記を追加 ************** */
   .timeline {
     .per {
       border-radius: 5px;
@@ -33,11 +23,9 @@
       &.mine {
         background-color: #C1EFFF;
       }
-/* ***************** 下記を追加 ************** */
       &.reply {
         margin-top: 0px;
       }
-/* ****************************************** */
       p {
         margin: 0;
       }
@@ -57,7 +45,6 @@
         vertical-align: top;
         word-wrap: break-word;
       }
-      /* ***************** 下記を追加 ************** */
       .operation {
         display: inline-block;
         button {
@@ -69,17 +56,12 @@
           }
         }
       }
-/* ******************************************** */
     }
   }
-/* ******************************************** */
-/* ***************** 下記を追加 ************** */
   .user_filter {
     margin-bottom: 20px;
     .actions {
       text-align: right;
     }
   }
-/* ******************************************** */
 }
-/* ******************************************** */

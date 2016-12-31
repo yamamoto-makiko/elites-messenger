@@ -1,29 +1,20 @@
-<!--<h1>Timelines#index</h1>-->
-<!--<p>Find me in app/views/timelines/index.html.erb</p>-->
-
 <div class="wrapper timeline_wrapper">
 
   <!-- メッセージ入力 -->
   <div class="input">
-    <!--<!%= form_for @input_message do |f| %>-->
     <%= form_for @input_message, remote: true, html: {class: 'input_message_form'}, format: :json, authenticity_token: true do |f| %>
       <div class="form-group">
         <%= f.label :message %><br/>
-        <!--***************** 下記を追加 *****************-->
         <!--** 編集中の場合は場合はメッセージを表示 **-->
         <% if @input_message.persisted? %>
           編集中
-          <!--*************************** 下記を追加 ****************************-->
           <% elsif @reply_timeline %>
           <%= @reply_timeline.user.name %>の「<%= truncate(@reply_timeline.message, length: 7) %>」に返信
-          <!--*******************************************************************-->
         <% end %>
         <br/>
-        <!--**********************************************-->
         <%= f.text_area :message, class: 'form-control', rows: 3 %>
       </div>
       <div class="actions clearfix">
-        <!--*********************** 下記を追加 ************************-->
         <% if flash[:alert] %>
           <div class="alert">
             <% flash[:alert].each do |message| %>
@@ -31,30 +22,20 @@
             <% end %>
           </div>
         <% end %>
-        <!--***********************************************************-->
         <div class="post">
-        <!--***************** 下記を追加 *****************-->
           <!--** 編集中は編集をキャンセルするボタンを表示 **-->
-          <!--<!% if @input_message.persisted? %>-->
-          <!--********************* 修正後 *********************-->
           <% if @input_message.persisted? || @reply_timeline %>
-          <!--**************************************************-->
             <%= link_to root_path do %>
               <%= button_tag 'Cancel', class: 'btn btn-default' %>
             <% end %>
           <% end %>
-        <!--**********************************************-->
-          <!--<!%= f.submit 'Post', class: 'btn btn-primary' %>-->
           <%= f.submit 'Post', class: 'btn btn-primary post' %>
           <%= f.submit 'AjaxPost', class: 'btn btn-primary ajaxpost' %>
         </div>
       </div>
-      <!--*************************** 下記を追加 ****************************-->
       <%= f.hidden_field :reply_id, value: @reply_timeline.id if @reply_timeline %>
-      <!--*******************************************************************-->
     <% end %>
   </div>
-  <!--************************* 下記を追加 ************************-->
   <div class="user_filter">
     <%= form_tag filter_by_user_timelines_path do |f| %>
       <div class="form-group">
@@ -66,42 +47,10 @@
       </div>
     <% end %>
   </div>
-  <!--***********************************************************-->
-  <!--*********************** 下記を追加 ************************-->
   <!-- タイムライン -->
   <div class="timeline">
     <% @timeline.each do |t| %>
-      <!--<div class="per">-->
-      <!--****** <div class="per">を下記に変更 ********-->
-    <!--  <div class="per <!%= 'mine' if t.user.id == current_user.id %>">-->
-    　<!--*********************************************-->
-    <!--    <p class="icon">-->
-    <!--      <!% if t.user.thumbnail? %>-->
-    <!--          <!%= image_tag t.user.thumbnail.url %>-->
-    <!--      <!% else %>-->
-    <!--          NO IMAGE-->
-    <!--      <!% end %>-->
-    <!--    </p>-->
-        <!--<p class="message">-->
-        <!--  <!%= t.message %>-->
-        <!--</p>-->
-        
-    <!--**************************** 修正後 ***************************-->
-    <!--    <!%= simple_format t.message, class: 'message' %>-->
-        <!--***************** 下記を追加 *****************-->
-        <!--** 自作したヘルパーメソッドを呼ぶ ******-->
-        <!--** 自分の投稿の場合は編集ボタンを追加 **-->
-    <!--    <!% if mypost?(t) %>-->
-    <!--      <!%= link_to root_path(id: t.id, message: t.message) do %>-->
-    <!--        <!%= button_tag 'Edit', class: 'btn btn-info' %>-->
-    <!--      <!% end %>-->
-    <!--    <!% end %>-->
-        <!--**********************************************-->
-    <!--  </div>-->
-      <!--************************** 下記を追加 ************************-->
       <%= render 'timelines/timeline', t: t %>
-      <!--**************************************************************-->
     <% end %>
   </div>
-　<!--***********************************************************-->
 </div>

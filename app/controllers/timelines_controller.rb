@@ -8,8 +8,13 @@ class TimelinesController < ApplicationController
     #--***************************************************
     #--************************** 下記を追加 *********************
     # タイムラインを取得
-    @timeline = Timeline.includes(:user).order('updated_at DESC')
-    #--***********************************************************
+    # @timeline = Timeline.includes(:user).order('updated_at DESC')
+    #--*********************** 修正後 ***********************
+    @timeline = Timeline.includes(:user).user_filter(params[:filter_user_id]).order('updated_at DESC')
+    #--******************** 下記を追加 **********************
+    # ユーザ一覧を取得
+    @users = User.all
+    #--******************************************************
   end
   #--************************** 下記を追加 *********************
   def create
@@ -34,6 +39,17 @@ class TimelinesController < ApplicationController
     end
     redirect_to action: :index
   end
+
+#--************************ 下記を追加 *********************
+  def filter_by_user
+    if params[:filter_user_id].present?
+      redirect_to action: :index, filter_user_id: params[:filter_user_id]
+    else
+      # フィルターなし
+      redirect_to action: :index
+    end
+  end
+#--*********************************************************
 
   private
   def input_message_param

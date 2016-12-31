@@ -8,9 +8,15 @@ Rails.application.routes.draw do
 
   devise_for :users
   #--********************** 下記を追加 *******************
-  resources :timelines
-  #--*****************************************************
-  
+  # resources :timelines
+  #--*********************** 修正後 *********************
+    resources :timelines do
+      collection do
+        post 'filter_by_user'
+      end
+    end
+  #---**************************************************  
+
   if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

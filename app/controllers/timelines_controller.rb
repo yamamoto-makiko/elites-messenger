@@ -46,7 +46,13 @@ class TimelinesController < ApplicationController
     end
     redirect_to action: :index
   end
-
+#--********************** 下記を追加 *************************
+  def destroy
+    timeline = Timeline.find(params[:id])
+    timeline.destroy
+    redirect_to action: :index
+  end
+#--**********************************************************
 #--************************ 下記を追加 *********************
   def filter_by_user
     if params[:filter_user_id].present?

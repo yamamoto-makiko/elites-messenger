@@ -57,6 +57,19 @@
         vertical-align: top;
         word-wrap: break-word;
       }
+      /* ***************** 下記を追加 ************** */
+      .operation {
+        display: inline-block;
+        button {
+          margin-bottom: 3px;
+        }
+        .button_to {
+          input.btn {
+            width: 50px;
+          }
+        }
+      }
+/* ******************************************** */
     }
   }
 /* ******************************************** */

@@ -5,7 +5,8 @@
 
   <!-- メッセージ入力 -->
   <div class="input">
-    <%= form_for @input_message do |f| %>
+    <!--<!%= form_for @input_message do |f| %>-->
+    <%= form_for @input_message, remote: true, html: {class: 'input_message_form'}, format: :json, authenticity_token: true do |f| %>
       <div class="form-group">
         <%= f.label :message %><br/>
         <!--***************** 下記を追加 *****************-->
@@ -43,7 +44,9 @@
             <% end %>
           <% end %>
         <!--**********************************************-->
-          <%= f.submit 'Post', class: 'btn btn-primary' %>
+          <!--<!%= f.submit 'Post', class: 'btn btn-primary' %>-->
+          <%= f.submit 'Post', class: 'btn btn-primary post' %>
+          <%= f.submit 'AjaxPost', class: 'btn btn-primary ajaxpost' %>
         </div>
       </div>
       <!--*************************** 下記を追加 ****************************-->

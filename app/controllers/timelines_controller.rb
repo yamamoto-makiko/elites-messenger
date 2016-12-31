@@ -9,11 +9,18 @@ class TimelinesController < ApplicationController
     #--************************** 下記を追加 *********************
     # タイムラインを取得
     # @timeline = Timeline.includes(:user).order('updated_at DESC')
-    #--*********************** 修正後 ***********************
-    @timeline = Timeline.includes(:user).user_filter(params[:filter_user_id]).order('updated_at DESC')
+    # @timeline = Timeline.includes(:user).user_filter(params[:filter_user_id]).order('updated_at DESC')
+    #--********************* 修正後 *****************
+    @timeline = Timeline.includes(:user).not_reply.user_filter(params[:filter_user_id]).order('updated_at DESC')
     #--******************** 下記を追加 **********************
     # ユーザ一覧を取得
     @users = User.all
+    #--******************************************************
+    #--********************** 下記を追加 *********************
+    if params[:reply_id]
+      # 返信時は返信のタイムライン情報を取得
+      @reply_timeline = Timeline.find(params[:reply_id])
+    end
     #--******************************************************
   end
   #--************************** 下記を追加 *********************
@@ -53,7 +60,9 @@ class TimelinesController < ApplicationController
 
   private
   def input_message_param
-    params.require(:timeline).permit(:message)
+    # params.require(:timeline).permit(:message)
+    # --*************** , :reply_idを追加 ********-->
+    params.require(:timeline).permit(:message, :reply_id)
   end
   #--***********************************************************
 end

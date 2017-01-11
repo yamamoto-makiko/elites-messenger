@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231023140) do
+ActiveRecord::Schema.define(version: 20170101065430) do
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "timeline_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "likes", ["timeline_id", "user_id"], name: "index_likes_on_timeline_id_and_user_id", unique: true
 
   create_table "timelines", force: :cascade do |t|
     t.integer  "user_id"

@@ -17,16 +17,42 @@ class TimelinesController < ApplicationController
     timeline.user_id = current_user.id
     if timeline.valid? # バリデーションチェック
       timeline.save!
+      #基本課題15　ADD START
+      respond_to do |format|
+        format.html do
+          # 【ここにindexへリダイレクトさせる処理を追記】
+          redirect_to action: :index
+        end
+        format.json do
+          html = render_to_string partial: 'timelines/timeline', layout: false, formats: :html, locals: { t: timeline }
+          render json: {timeline: html}
+        end
+      end
+      #基本課題15　ADD END
     else
-      flash[:alert] = timeline.errors.full_messages
+      #基本課題15　ADD START
+      # flash[:alert] = timeline.errors.full_messages
+      respond_to do |format|
+        format.html do
+          flash[:alert] = timeline.errors.full_messages
+          # 【ここにindexへリダイレクトさせる処理を追記】
+          redirect_to action: :index
+        end
+        format.json do
+          # 【ここでエラーメッセージを渡す】
+          render json: {timeline: timeline.errors.full_messages}
+        end
+      end
+      #基本課題15　ADD END
     end
-    unless request.format.json?
-      redirect_to action: :index
-    else
-      # ajaxの場合のレスポンス
-      html = render_to_string partial: 'timelines/timeline', layout: false, formats: :html, locals: { t: timeline }
-      render json: {timeline: html}
-    end
+    #基本課題15　DEL
+    # unless request.format.json?
+    #   redirect_to action: :index
+    # else
+    #   # ajaxの場合のレスポンス
+    #   html = render_to_string partial: 'timelines/timeline', layout: false, formats: :html, locals: { t: timeline }
+    #   render json: {timeline: html}
+    # end
   end
 
   def update

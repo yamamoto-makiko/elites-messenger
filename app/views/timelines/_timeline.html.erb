@@ -26,6 +26,12 @@
     <%= link_to root_path(reply_id: t.id) do %>
       <%= button_tag 'Re', class: 'btn btn-info' %>
     <% end %>
+    <!-- 基本課題16 ADD START-->
+    <hr>
+    <%= link_to root_path(reply_id: t.id) do %>
+      <%= button_tag 'Like!', class: 'btn btn-info' %>
+    <% end %>
+    <!-- 基本課題16 ADD END-->
   <% end %>
 </div>
 <% t.replies.each do |r| %>

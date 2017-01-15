@@ -20,6 +20,10 @@
       margin-top: 20px;
 
       background-color: #DADADA;
+      .like_button {
+        display: inline;
+        margin-right: 10px
+      }
       &.mine {
         background-color: #C1EFFF;
       }

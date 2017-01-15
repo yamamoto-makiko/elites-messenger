@@ -1,5 +1,6 @@
 class Timeline < ActiveRecord::Base
   belongs_to :user
+  has_many :likes
   has_many :replies, class_name: 'Timeline', foreign_key: 'reply_id', dependent: :destroy
   # 基本課題15　バリデーション追加
   validates :message, presence: true, allow_blank: false, length: { maximum: 140 }

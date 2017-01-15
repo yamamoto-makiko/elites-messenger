@@ -40,7 +40,7 @@ class TimelinesController < ApplicationController
         end
         format.json do
           # 【ここでエラーメッセージを渡す】
-          render json: {timeline: timeline.errors.full_messages}
+          render json: {errors: timeline.errors.full_messages}
         end
       end
       #基本課題15　ADD END
